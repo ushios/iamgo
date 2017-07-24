@@ -1,4 +1,4 @@
-package iamgolicy
+package iamgo
 
 type (
 	Policy interface {
@@ -6,12 +6,12 @@ type (
 	}
 
 	PolicyDocument struct {
-		Version   string
+		Version   Version
 		Statement []StatementEntry
 	}
 
 	StatementEntry struct {
-		Effect   string
+		Effect   Effect
 		Action   []string
 		Resource string
 	}
