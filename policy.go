@@ -1,8 +1,10 @@
 package iamgo
 
+import "encoding/json"
+
 type (
 	Policy interface {
-		PolicyScheme() string
+		PolicyScheme() ([]byte, error)
 	}
 
 	PolicyDocument struct {
@@ -16,3 +18,20 @@ type (
 		Resource string
 	}
 )
+
+func NewLatestPolicy(st []StatementEntry) *PolicyDocument {
+	return &PolicyDocument{
+		Version:   Version20121017,
+		Statement: st,
+	}
+}
+
+// PolicyScheme for Policy interface
+func (p *PolicyDocument) PolicyScheme() ([]byte, error) {
+	b, err := json.Marshal(p)
+	if err != nil {
+		return nil, err
+	}
+
+	return b, nil
+}
