@@ -1,4 +1,4 @@
-package golicy
+package iamgolicy
 
 type (
 	Policy interface {
